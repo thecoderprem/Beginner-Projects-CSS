@@ -1,0 +1,63 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.avatar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: url(./dog.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.avatar::before,
+.avatar::after {
+    --scale: 0;
+    --tooltip-color: #333;
+    --arrow-size: 10px;
+    
+
+    position: absolute;
+    top: -.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+}
+
+.avatar::before {
+    --translate-y: calc(-100% - var(--arrow-size));
+
+    content: attr(data-tooltip);
+    padding: 1rem;
+    border-radius: .6rem;
+    font-weight: bold;
+    text-align: center;
+    width: max-content;
+    max-width: 100%;
+    background: var(--tooltip-color);
+    color: white;
+}
+
+.avatar:hover::before,
+.avatar:hover::after {
+    --scale: 1;
+}
+
+.avatar::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
+}
