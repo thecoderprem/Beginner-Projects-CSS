@@ -8,5 +8,6 @@ Projects list:
 2. CSS Only Tooltip.
 3. Animated-Card.
 4. Button hover effects.
+5. Registration Form.
 
 Thank you !
